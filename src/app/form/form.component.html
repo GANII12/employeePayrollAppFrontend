@@ -1,16 +1,16 @@
 <div class="form-content">
-    <form class ="form" action ="#" (ngSubmit) = "onSubmit()">
+    <form class ="form" action ="#">
         <h3> Add Employee Details</h3>
         <div class="row-content">
             <label class="lable-text" for="firstName"> FirstName</label>
-            <input type="text" class ="form-control" id = "firstName"
+            <input type="text" class ="form-control" id = "firstName" pattern="^[A-Z]{1}[a-zA-Z\\s]{2,}$"
                 [(ngModel)] = "employee.firstName" name = "firstName"/>
 
         </div>
     
         <div class="row-content">
             <label class="lable-text" for="lastName"> LastName</label>
-            <input type="text" class ="form-control" id = "lastName"
+            <input type="text" class ="form-control" id = "lastName" pattern="^[A-Z]{1}[a-zA-Z\\s]{2,}$"
                 [(ngModel)] = "employee.lastName" name = "lastName">
         </div>
         
@@ -30,12 +30,12 @@
             <div class="profile-radio-content">
                 <label>
                     <input type="radio" id="profile1" name="profile"
-                        value="../assets/Ellipse -3.jpg" required [(ngModel)]="employee.profilePic">
+                        value="../assets/Ellipse -3.png" required [(ngModel)]="employee.profilePic">
                     <img class="profile" id="image1" src="../assets/Ellipse -3.png">
                 </label>
                 <label>
                     <input type="radio" id="profile2" name="profile"
-                        value="../assets/Ellipse -2.jpg" required [(ngModel)]="employee.profilePic">
+                        value="../assets/Ellipse -2.png" required [(ngModel)]="employee.profilePic">
                     <img class="profile" id="image2" src="../assets/Ellipse -2.png">
                 </label>
                 <label>
@@ -74,7 +74,7 @@
 
         <div class="row-content">
             <label class="label text" for="StartDate">Start Date</label>
-            <input type="date" class="startDate" id="StartDate" name="date" [(ngModel)]="employee.date" required>
+            <input type="date" class="startDate" id="StartDate" name="date" [(ngModel)]="employee.startdate" required>
         </div>
         <div class="row-content">
             <label class="label text" for="notes">Notes</label><br>
@@ -84,7 +84,8 @@
         <div class="buttonParent">
             <button class="resetButton button cancelButton" (click)="onCancel()">Cancel</button><br>
             <div class="submit-reset">
-                <button type="submit" class="button submitButton" id="submitButton" >Submit</button>
+                <button type="submit" class="button submitButton" id="submitButton" *ngIf="id==null" (click)="onSubmit()">Submit</button>
+                <button type="submit" class="button submitButton" id="submitButton" *ngIf="id!=null" (click)="updateEmployeeData()">Update</button>
                 <button type="reset" class="resetButton button">Reset</button><br>
             </div>
         </div>
